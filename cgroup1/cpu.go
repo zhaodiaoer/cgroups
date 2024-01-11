@@ -121,5 +121,36 @@ func (c *cpuController) Stat(path string, stats *v1.Metrics) error {
 			stats.CPU.Throttling.ThrottledTime = v
 		}
 	}
-	return sc.Err()
+	err = sc.Err()
+	if err != nil {
+		return err
+	}
+
+	burst, err := os.ReadFile(filepath.Join(c.Path(path), "cpu.cfs_burst_us"))
+	if err != nil {
+		return err
+	}
+	stats.CPU.CfsConfig.BurstUs, err = parseUint(string(burst), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	period, err := os.ReadFile(filepath.Join(c.Path(path), "cpu.cfs_period_us"))
+	if err != nil {
+		return err
+	}
+	stats.CPU.CfsConfig.PeriodUs, err = parseUint(string(period), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	quota, err := os.ReadFile(filepath.Join(c.Path(path), "cpu.cfs_quota_us"))
+	if err != nil {
+		return err
+	}
+	stats.CPU.CfsConfig.QuotaUs, err = parseInt(string(quota), 10, 64)
+	if err != nil {
+		return err
+	}
+	return nil
 }

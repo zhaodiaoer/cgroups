@@ -31,6 +31,7 @@ message PidsStat {
 message CPUStat {
 	CPUUsage usage = 1;
 	Throttle throttling = 2;
+	CFSConfig cfs_config = 3;
 }
 
 message CPUUsage {
@@ -46,6 +47,12 @@ message Throttle {
 	uint64 periods = 1;
 	uint64 throttled_periods = 2;
 	uint64 throttled_time = 3;
+}
+
+message CFSConfig {
+	uint64 burst_us = 1;
+	uint64 period_us = 2;
+	int64  quota_us= 3;
 }
 
 message MemoryStat {

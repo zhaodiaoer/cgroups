@@ -171,6 +171,14 @@ func parseUint(s string, base, bitSize int) (uint64, error) {
 	return v, nil
 }
 
+func parseInt(s string, base, bitSize int) (int64, error) {
+	v, err := strconv.ParseInt(s, base, bitSize)
+	if err != nil {
+		return 0, err
+	}
+	return v, nil
+}
+
 func parseKV(raw string) (string, uint64, error) {
 	parts := strings.Fields(raw)
 	switch len(parts) {

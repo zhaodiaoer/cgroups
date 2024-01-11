@@ -313,6 +313,7 @@ func (c *cgroup) Stat(handlers ...ErrorHandler) (*v1.Metrics, error) {
 			CPU: &v1.CPUStat{
 				Throttling: &v1.Throttle{},
 				Usage:      &v1.CPUUsage{},
+				CfsConfig:  &v1.CFSConfig{},
 			},
 		}
 		wg   = &sync.WaitGroup{}
