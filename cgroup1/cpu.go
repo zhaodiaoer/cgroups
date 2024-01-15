@@ -126,15 +126,6 @@ func (c *cpuController) Stat(path string, stats *v1.Metrics) error {
 		return err
 	}
 
-	burst, err := os.ReadFile(filepath.Join(c.Path(path), "cpu.cfs_burst_us"))
-	if err != nil {
-		return err
-	}
-	stats.CPU.CfsConfig.BurstUs, err = parseUint(string(burst), 10, 64)
-	if err != nil {
-		return err
-	}
-
 	period, err := os.ReadFile(filepath.Join(c.Path(path), "cpu.cfs_period_us"))
 	if err != nil {
 		return err

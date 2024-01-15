@@ -188,9 +188,8 @@ func (m *Throttle) String() string { return proto.CompactTextString(m) }
 func (*Throttle) ProtoMessage()    {}
 
 type CFSConfig struct {
-	BurstUs  uint64 `protobuf:"varint,1,opt,name=burst_us" json:"burst_us,omitempty"`
-	PeriodUs uint64 `protobuf:"varint,2,opt,name=period_us" json:"period_us,omitempty"`
-	QuotaUs  int64  `protobuf:"varint,3,opt,name=quota_us" json:"quota_us,omitempty"`
+	PeriodUs uint64 `protobuf:"varint,1,opt,name=period_us" json:"period_us,omitempty"`
+	QuotaUs  int64  `protobuf:"varint,2,opt,name=quota_us" json:"quota_us,omitempty"`
 }
 
 func (m *CFSConfig) Reset()         { *m = CFSConfig{} }

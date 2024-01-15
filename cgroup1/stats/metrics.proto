@@ -50,9 +50,8 @@ message Throttle {
 }
 
 message CFSConfig {
-	uint64 burst_us = 1;
-	uint64 period_us = 2;
-	int64  quota_us= 3;
+	uint64 period_us = 1;
+	int64  quota_us= 2;
 }
 
 message MemoryStat {
